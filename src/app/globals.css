@@ -1,0 +1,490 @@
+@import "tailwindcss";
+
+/* ===== EduFinAI Design System ===== */
+
+:root,
+[data-theme="dark"] {
+  --primary: #6366f1;
+  --primary-light: #818cf8;
+  --primary-dark: #4f46e5;
+  --secondary: #06b6d4;
+  --secondary-light: #22d3ee;
+  --accent: #f59e0b;
+  --accent-light: #fbbf24;
+  --background: #020205;
+  --background-secondary: #070710;
+  --surface: #0b0b18;
+  --surface-hover: #121226;
+  --surface-glass: rgba(11, 11, 24, 0.65);
+  --foreground: #f8fafc;
+  --foreground-secondary: #94a3b8;
+  --foreground-muted: #64748b;
+  --border: rgba(99, 102, 241, 0.08);
+  --border-hover: rgba(99, 102, 241, 0.18);
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #06b6d4;
+  --gradient-primary: linear-gradient(135deg, #6366f1, #06b6d4, #10b981);
+  --gradient-warm: linear-gradient(135deg, #f59e0b, #ef4444);
+  --gradient-cool: linear-gradient(135deg, #06b6d4, #10b981);
+  --gradient-purple: linear-gradient(135deg, #8b5cf6, #ec4899);
+  --gradient-dark: linear-gradient(180deg, #020205, #070710);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 16px 50px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 24px rgba(99, 102, 241, 0.15);
+  --shadow-glow-cyan: 0 0 24px rgba(6, 182, 212, 0.15);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}
+
+[data-theme="light"] {
+  --primary: #4f46e5;
+  --primary-light: #6366f1;
+  --primary-dark: #3730a3;
+  --secondary: #0891b2;
+  --secondary-light: #06b6d4;
+  --accent: #d97706;
+  --accent-light: #f59e0b;
+  --background: #f8fafc;
+  --background-secondary: #f1f5f9;
+  --surface: #ffffff;
+  --surface-hover: #f8fafc;
+  --surface-glass: rgba(255, 255, 255, 0.75);
+  --foreground: #0f172a;
+  --foreground-secondary: #475569;
+  --foreground-muted: #94a3b8;
+  --border: rgba(99, 102, 241, 0.1);
+  --border-hover: rgba(99, 102, 241, 0.2);
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #0891b2;
+  --gradient-primary: linear-gradient(135deg, #4f46e5, #0891b2);
+  --gradient-warm: linear-gradient(135deg, #d97706, #dc2626);
+  --gradient-cool: linear-gradient(135deg, #0891b2, #059669);
+  --gradient-purple: linear-gradient(135deg, #7c3aed, #db2777);
+  --gradient-dark: linear-gradient(180deg, #f8fafc, #f1f5f9);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.05);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+  --shadow-glow: 0 0 20px rgba(79, 70, 229, 0.08);
+  --shadow-glow-cyan: 0 0 20px rgba(8, 145, 178, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-primary-dark: var(--primary-dark);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-border: var(--border);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* { scrollbar-width: thin; scrollbar-color: var(--primary) transparent; }
+*::-webkit-scrollbar { width: 5px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 3px; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ===== Glass ===== */
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-hover:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.card-gradient { position: relative; overflow: hidden; }
+.card-gradient::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient-primary); }
+
+/* ===== Buttons ===== */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-primary:hover {
+  transform: translateY(-1.5px);
+  box-shadow: var(--shadow-glow);
+  filter: brightness(1.08);
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-primary::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent); opacity: 0; transition: opacity 0.3s; }
+.btn-primary:hover::after { opacity: 1; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary-light);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-secondary:hover {
+  background: rgba(99, 102, 241, 0.04);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* ===== Inputs ===== */
+@layer components {
+  .input-field {
+    background: var(--background-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem 1rem;
+    color: var(--foreground);
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    width: 100%;
+    outline: none;
+  }
+}
+.input-field:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+}
+.input-field::placeholder { color: var(--foreground-muted); }
+.input-field, .input-field option, .input-field optgroup { color: var(--foreground) !important; }
+.input-field:-webkit-autofill,
+.input-field:-webkit-autofill:hover,
+.input-field:-webkit-autofill:focus { -webkit-text-fill-color: var(--foreground) !important; -webkit-box-shadow: 0 0 0 1000px var(--background-secondary) inset !important; caret-color: var(--foreground); transition: background-color 5000s ease-in-out 0s; }
+
+/* ===== Dream Score Ring ===== */
+.dream-score-ring { position: relative; width: 200px; height: 200px; }
+.dream-score-ring svg { transform: rotate(-90deg); }
+.dream-score-ring .score-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+/* ===== Animations ===== */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+@keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3); } 50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5); } }
+@keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes ring-draw { from { stroke-dashoffset: var(--ring-circumference); } to { stroke-dashoffset: var(--ring-offset); } }
+@keyframes gate-float { 0%, 100% { transform: translateY(0) scale(1); opacity: 0.08; } 50% { transform: translateY(-15px) scale(1.05); opacity: 0.14; } }
+
+.animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+.animate-slide-left { animation: slideInLeft 0.6s ease-out forwards; }
+.animate-slide-right { animation: slideInRight 0.6s ease-out forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+.animate-gradient { background-size: 200% 200%; animation: gradient-shift 3s ease infinite; }
+.animate-ring-draw { animation: ring-draw 1.5s ease-out forwards; }
+.animate-gate-float { animation: gate-float 4s ease-in-out infinite; }
+
+/* ===== Background Effects ===== */
+.bg-grid { background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px); background-size: 60px 60px; }
+[data-theme="light"] .bg-grid { background-image: linear-gradient(rgba(79, 70, 229, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79, 70, 229, 0.04) 1px, transparent 1px); }
+.bg-dots { background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px); background-size: 30px 30px; }
+.glow-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.12; pointer-events: none; }
+[data-theme="light"] .glow-orb { opacity: 0.06; }
+
+/* ===== Sidebar ===== */
+.sidebar {
+  background: var(--surface-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  height: calc(100vh - 24px);
+  max-height: calc(100vh - 24px);
+  width: 250px;
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  z-index: 100;
+  border-radius: var(--radius);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease, left 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-sm);
+  color: var(--foreground-secondary);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 0.85rem;
+}
+.sidebar-link:hover {
+  background: rgba(99, 102, 241, 0.06);
+  color: var(--foreground);
+}
+.sidebar-link.active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.06));
+  color: var(--primary-light);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ===== Badges ===== */
+.badge { display: inline-flex; align-items: center; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.025em; }
+.badge-primary { background: rgba(99, 102, 241, 0.12); color: var(--primary-light); }
+.badge-success { background: rgba(16, 185, 129, 0.12); color: var(--success); }
+.badge-warning { background: rgba(245, 158, 11, 0.12); color: var(--warning); }
+.badge-danger { background: rgba(239, 68, 68, 0.12); color: var(--danger); }
+
+/* ===== Stats ===== */
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; position: relative; overflow: hidden; transition: all 0.3s ease; }
+
+/* ===== Chat ===== */
+.chat-bubble-user { background: var(--gradient-primary); color: white; border-radius: var(--radius) var(--radius) 4px var(--radius); padding: 0.75rem 1rem; max-width: 80%; margin-left: auto; }
+.chat-bubble-ai { background: var(--surface); border: 1px solid var(--border); color: var(--foreground); border-radius: var(--radius) var(--radius) var(--radius) 4px; padding: 0.75rem 1rem; max-width: 80%; }
+
+/* ===== Tags ===== */
+.tag-reach { background: rgba(239, 68, 68, 0.12); color: #ef4444; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.tag-match { background: rgba(245, 158, 11, 0.12); color: #f59e0b; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.tag-safety { background: rgba(16, 185, 129, 0.12); color: #10b981; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ===== Progress ===== */
+.progress-bar { height: 6px; background: var(--background-secondary); border-radius: 3px; overflow: hidden; }
+.progress-bar-fill { height: 100%; border-radius: 3px; background: var(--gradient-primary); transition: width 1s ease; }
+
+/* ===== Streak ===== */
+.streak-fire { display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 9999px; font-size: 0.85rem; color: var(--accent); }
+
+/* ===== News Card ===== */
+.news-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: all 0.3s ease; }
+.news-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.news-card img { width: 100%; height: 160px; object-fit: cover; }
+
+
+/* ===== Universal Responsive Overrides ===== */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --radius: 12px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+  }
+  .card { padding: 1.25rem; }
+  .btn-primary, .btn-secondary { padding: 0.65rem 1.25rem; font-size: 0.875rem; }
+  h1 { font-size: 1.75rem !important; line-height: 1.2 !important; }
+  h2 { font-size: 1.5rem !important; }
+  .dream-score-ring { width: 150px; height: 150px; }
+}
+
+@media (max-width: 480px) {
+  .grid-cols-2 { grid-template-columns: repeat(1, minmax(0, 1fr)) !important; }
+  .stat-card { padding: 1rem; }
+  .sidebar { width: 100%; }
+}
+
+/* Fix for horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Ensure all images and svgs are contained */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive spacing utility */
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ===== Recharts ===== */
+.recharts-cartesian-grid-horizontal line, .recharts-cartesian-grid-vertical line { stroke: rgba(99, 102, 241, 0.06); }
+.recharts-text { fill: var(--foreground-secondary) !important; font-size: 0.75rem; }
+/* Dark theme: make ALL recharts tick/legend text readable (axis values were rendering near-black on dark bg) */
+[data-theme="dark"] .recharts-cartesian-axis-tick text,
+[data-theme="dark"] .recharts-polar-angle-axis-tick text,
+[data-theme="dark"] .recharts-polar-radius-axis-tick text,
+[data-theme="dark"] .recharts-legend-item-text,
+[data-theme="dark"] .recharts-label,
+[data-theme="dark"] .recharts-cartesian-axis-line { fill: #e2e8f0 !important; color: #e2e8f0 !important; stroke: rgba(226,232,240,0.25); }
+[data-theme="dark"] .recharts-tooltip-wrapper .recharts-default-tooltip { background: #141425 !important; border-color: rgba(99,102,241,0.3) !important; color: #f1f5f9 !important; }
+[data-theme="dark"] .recharts-tooltip-wrapper .recharts-tooltip-label,
+[data-theme="dark"] .recharts-tooltip-wrapper .recharts-tooltip-item { color: #f1f5f9 !important; }
+
+/* ===== Theme Toggle ===== */
+.theme-toggle { position: relative; width: 56px; height: 28px; border-radius: 14px; background: var(--background-secondary); border: 1px solid var(--border); cursor: pointer; transition: all 0.3s ease; }
+.theme-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--gradient-primary); transition: transform 0.3s ease; }
+[data-theme="light"] .theme-toggle::after { transform: translateX(28px); }
+
+/* ===== Loan Card with real links ===== */
+.loan-link { color: var(--primary-light); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.loan-link:hover { color: var(--primary); text-decoration: underline; }
+
+/* ===== Light Theme text-white fix ===== */
+[data-theme="light"] .text-white { color: var(--foreground) !important; }
+[data-theme="light"] .hover\:text-white:hover { color: var(--foreground) !important; }
+[data-theme="light"] .chat-bubble-user { color: white !important; }
+[data-theme="light"] .chat-bubble-user .text-white { color: white !important; }
+[data-theme="light"] .btn-primary { color: white !important; }
+[data-theme="light"] .btn-primary .text-white { color: white !important; }
+[data-theme="light"] [style*="gradient-primary"] .text-white { color: white !important; }
+
+/* ===== Light Theme tooltip fix for recharts ===== */
+[data-theme="light"] .recharts-tooltip-wrapper .recharts-default-tooltip { background: #ffffff !important; border-color: rgba(79,70,229,0.15) !important; }
+[data-theme="light"] .recharts-tooltip-wrapper .recharts-tooltip-label { color: var(--foreground) !important; }
+
+
+
+/* =====================================================================
+   Chat surfaces — inverted theme. The chat shell is intentionally OPPOSITE
+   of the global app theme: light app -> dark chat, dark app -> light chat.
+   Components opt-in by wrapping themselves in `data-chat-theme="invert"` and
+   using the `--chat-*` tokens (or the helper classes below) instead of
+   hard-coded hex.
+===================================================================== */
+
+/* Default (when global theme = dark) -> chat appears LIGHT */
+[data-chat-theme="invert"] {
+  --chat-bg: #ffffff;
+  --chat-bg-elevated: #f3f5f7;
+  --chat-bg-strip: #e9edf2;
+  --chat-bubble-incoming: #ffffff;
+  --chat-bubble-outgoing: #d9fdd3;
+  --chat-bubble-incoming-fg: #0b141a;
+  --chat-bubble-outgoing-fg: #0b141a;
+  --chat-fg: #0b141a;
+  --chat-fg-muted: #54656f;
+  --chat-fg-subtle: #667781;
+  --chat-border: rgba(11, 20, 26, 0.08);
+  --chat-overlay: rgba(255, 255, 255, 0.92);
+  --chat-input-bg: #ffffff;
+  --chat-tile-active: #f0f2f5;
+}
+
+/* When global theme = light -> chat appears DARK (WhatsApp-dark feel) */
+[data-theme="light"] [data-chat-theme="invert"] {
+  --chat-bg: #0b141a;
+  --chat-bg-elevated: #202c33;
+  --chat-bg-strip: #111b21;
+  --chat-bubble-incoming: #202c33;
+  --chat-bubble-outgoing: #005c4b;
+  --chat-bubble-incoming-fg: #e9edef;
+  --chat-bubble-outgoing-fg: #e9edef;
+  --chat-fg: #e9edef;
+  --chat-fg-muted: #aebac1;
+  --chat-fg-subtle: #8696a0;
+  --chat-border: rgba(255, 255, 255, 0.06);
+  --chat-overlay: rgba(11, 20, 26, 0.95);
+  --chat-input-bg: #2a3942;
+  --chat-tile-active: #2a3942;
+}
+
+/* Helper classes that components can use instead of inline Tailwind hex. */
+.chat-shell { background: var(--chat-bg); color: var(--chat-fg); }
+.chat-strip { background: var(--chat-bg-strip); color: var(--chat-fg); border-color: var(--chat-border); }
+.chat-elevated { background: var(--chat-bg-elevated); color: var(--chat-fg); border-color: var(--chat-border); }
+.chat-tile-active { background: var(--chat-tile-active) !important; }
+.chat-fg { color: var(--chat-fg); }
+.chat-fg-muted { color: var(--chat-fg-muted); }
+.chat-fg-subtle { color: var(--chat-fg-subtle); }
+.chat-input { background: var(--chat-input-bg); color: var(--chat-fg); border: 1px solid var(--chat-border); }
+.chat-input::placeholder { color: var(--chat-fg-muted); }
+.chat-bubble-incoming { background: var(--chat-bubble-incoming); color: var(--chat-bubble-incoming-fg); }
+.chat-bubble-outgoing { background: var(--chat-bubble-outgoing); color: var(--chat-bubble-outgoing-fg); }
+.chat-divider { border-color: var(--chat-border); }
+
+
+/* =====================================================================
+   Chat invert: force common Tailwind text-color utilities to follow the
+   chat foreground when chat is in its inverted (light) mode. Without this
+   `text-white` / `text-gray-100` etc. inside the chat would render white
+   on white in dark global theme (chat appears light).
+===================================================================== */
+
+/* Global theme = dark  ->  chat = LIGHT  */
+[data-chat-theme="invert"] .text-white,
+[data-chat-theme="invert"] .text-gray-100,
+[data-chat-theme="invert"] .text-gray-200 {
+  color: var(--chat-fg) !important;
+}
+[data-chat-theme="invert"] .text-gray-300,
+[data-chat-theme="invert"] .text-gray-400 {
+  color: var(--chat-fg-muted) !important;
+}
+[data-chat-theme="invert"] .text-gray-500 {
+  color: var(--chat-fg-subtle) !important;
+}
+
+/* Global theme = light  ->  chat = DARK
+   Restore light-on-dark inside the chat shell (and override the global
+   `[data-theme="light"] .text-white` rule that would otherwise paint
+   text-white as foreground/dark and make it invisible). */
+[data-theme="light"] [data-chat-theme="invert"] .text-white { color: #ffffff !important; }
+[data-theme="light"] [data-chat-theme="invert"] .text-gray-100,
+[data-theme="light"] [data-chat-theme="invert"] .text-gray-200 { color: #e9edef !important; }
+[data-theme="light"] [data-chat-theme="invert"] .text-gray-300,
+[data-theme="light"] [data-chat-theme="invert"] .text-gray-400 { color: #aebac1 !important; }
+[data-theme="light"] [data-chat-theme="invert"] .text-gray-500 { color: #8696a0 !important; }
