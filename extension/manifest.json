@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "GradPilot AI",
+  "version": "1.0.0",
+  "description": "Your AI Copilot for higher education and study abroad planning.",
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_icon": {
+      "16": "public/extension-logo.png",
+      "32": "public/extension-logo.png",
+      "48": "public/extension-logo.png",
+      "128": "public/extension-logo.png"
+    }
+  },
+  "icons": {
+    "16": "public/extension-logo.png",
+    "32": "public/extension-logo.png",
+    "48": "public/extension-logo.png",
+    "128": "public/extension-logo.png"
+  },
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content.tsx"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["public/extension-logo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
