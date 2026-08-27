@@ -1,0 +1,30 @@
+# Optional Ingress — use this if you front the cluster with nginx-ingress
+# (or AWS ALB + AWS Load Balancer Controller). Drop this file if you rely on
+# the LoadBalancer Service alone.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gradpilot
+  namespace: gradpilot
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: "20m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "180"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  tls:
+    - hosts:
+        - gradpilot.example.com
+      secretName: gradpilot-tls
+  rules:
+    - host: gradpilot.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: gradpilot
+                port:
+                  number: 80

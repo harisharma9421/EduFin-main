@@ -1,0 +1,14 @@
+# Public config — anything that's safe to bake into the build is also safe in
+# a ConfigMap. Real secrets live in k8s/secret.yaml (see secret.example.yaml).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gradpilot-config
+  namespace: gradpilot
+data:
+  NODE_ENV: "production"
+  NEXT_TELEMETRY_DISABLED: "1"
+  PORT: "3000"
+  HOSTNAME: "0.0.0.0"
+  # Public URL the front-end uses to call back to itself.
+  NEXT_PUBLIC_APP_URL: "https://gradpilot.example.com"

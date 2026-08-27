@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gradpilot
+  namespace: gradpilot
+  labels:
+    app: gradpilot
+spec:
+  # ClusterIP is fine when an Ingress / LoadBalancer fronts the service.
+  # Switch to LoadBalancer to expose directly on EC2 with AWS NLB/ELB.
+  type: LoadBalancer
+  selector:
+    app: gradpilot
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP

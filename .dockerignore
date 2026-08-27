@@ -1,0 +1,55 @@
+# Build artefacts
+.next
+node_modules
+extension/node_modules
+extension/dist
+
+# Local env files (real secrets come from Kubernetes Secret at runtime)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Misc
+.git
+.gitignore
+.github
+.vscode
+.kiro
+.DS_Store
+**/.DS_Store
+**/*.log
+npm-debug.log*
+
+# Tests + scripts not needed in the runtime container
+coverage
+.next/cache
+.next/dev
+
+# Markdown files (kept out of the image to slim it down)
+README.md
+CLAUDE.md
+AGENTS.md
+
+# Misc generators / one-off helpers
+get_pg_policies.js
+get_policies.js
+chat_migration.sql
+
+# CLI tools that should NEVER end up in the build context — these
+# sometimes get downloaded into the repo root by accident on EC2.
+kubectl
+kind
+minikube
+trivy
+sonar-scanner*
+*.tar.gz
+*.zip
+*.tgz
+
+# Random outputs / dumps people sometimes leave around
+*.csv.bak
+*.json.bak
+tmp/
+.cache/
