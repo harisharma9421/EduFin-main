@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
   // final image so the production container stays small.
   output: "standalone",
 
+  // Allow development HMR connections from host machine / external devices on local network
+  allowedDevOrigins: ["192.168.137.1", "localhost"],
+
   // Allow Next.js Image to load from external avatars used in the chat /
   // expert profile flows (LinkedIn, Google, etc.).
   images: {
