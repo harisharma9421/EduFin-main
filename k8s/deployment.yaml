@@ -25,7 +25,7 @@ spec:
       # Override at deploy time: image is set by Jenkins via `kubectl set image`.
       containers:
         - name: gradpilot
-          image: darshan11111/gradpilot:latest
+          image: harisharma9421/gradpilot:latest
           # Always pull from the registry. Combined with Jenkins pushing a
           # unique tag per build, this guarantees rollouts pick up the new
           # build without needing `kind load` (which duplicates the image
